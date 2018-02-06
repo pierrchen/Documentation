@@ -26,8 +26,13 @@ $ make
 4. Install UEFI to Poplar board
 
 - Copy device/hisilicon/poplar/l-loader/installer/* to USB disk
-- Boot Poplar board from USB disk
-- Partition table and UEFI will be installed to eMMC automatically
+- Boot Poplar board from USB disk to the u-boot console
+- Flash Partition Table and UEFI using
+```
+usb start;
+fatload usb 0:1 ${scriptaddr} recovery_files/install.scr;
+source ${scriptaddr}
+```
 
 5. Flash Android images
 
