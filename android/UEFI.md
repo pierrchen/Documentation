@@ -37,8 +37,30 @@ source ${scriptaddr}
 5. Flash Android images
 
 - Connect Poplar board to host PC with Type-A-Male to Type-A-Male cable
-- Boot Poplar board from eMMC, and UEFI should boot into fastboot mode
-automatically
-- Run device/hisilicon/poplar/l-loader/installer/flash-all.sh on host PC
+- Boot Poplar board from eMMC and Press "Escape" to enter UEFI Boot Menu
+- Select "Boot Manager", select "Android Fastboot", press Enter.
+
+Now, device enter into fastboot mode, you should see:
+
+```
+Android Fastboot mode - version 0.6.
+Press RETURN or SPACE key to quit.
+```
+
+- Check if device is in fastboot mode On host
+
+```
+$sudo fastboot devices
+247BB42E70735797	fastboot
+```
+
+- Flash
+```
+cd $OUT
+sudo fastboot flash mmcsda2 boot.img
+sudo fastboot flash mmcsda3 system.img
+sudo fastboot flash mmcsda5 cache.img
+sudo fastboot flash mmcsda6 userdata.img
+```
 
 6. Reboot, and Android should be booted up.
